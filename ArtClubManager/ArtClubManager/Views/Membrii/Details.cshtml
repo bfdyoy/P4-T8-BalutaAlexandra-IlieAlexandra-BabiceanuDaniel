@@ -1,0 +1,73 @@
+﻿@model ArtClubManager.Models.Membrii
+
+@{
+    ViewBag.Title = "Details";
+    if (this.User.IsInRole("Administrator"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Membrii</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Username)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID_Username)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parola)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parola)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Functie.ID_NumeFunctie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Functie.ID_NumeFunctie)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Username }) |
+    @Html.ActionLink("Back to List", "../Membrii/Index")
+</p>

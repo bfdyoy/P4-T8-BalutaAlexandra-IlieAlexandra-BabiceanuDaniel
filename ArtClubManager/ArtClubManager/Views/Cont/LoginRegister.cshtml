@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/LoginRegister.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+
+    <title>Index</title>
+</head>
+
+<body style="background-image:url(../../Content/img/login.jpg ); background-size:cover;">
+    <div class="col-md-12">
+        <div class="col-md-6" style="padding-left:80px;">
+            <h2>Nu ai cont?</h2>
+            <h2>Fa-ti unul acum!</h2>
+            <div class="col-md-8" style="margin-top:60px; float:none;">
+                <div class="align-bottom">
+                    <form>
+                        <input type="text" class="form-control" name="username" placeholder="Username" />
+                        <input type="email" class="form-control" name="email" placeholder="Email" />
+                        <input type="password" class="form-control" name="password" placeholder="Password" />
+                        <input type="submit" class="btn btn-primary" value="Inregistreaza-te" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2 style="text-align:center; margin-top:90px; color:#fff;">Intra in cont!</h2>
+            <div class="col-md-5" style="margin:0 auto; margin-top:65px; float:none;">
+                <div class="align-bottom">
+                    <form>
+                        <input type="email" class="form-control" name="email" placeholder="Email" />
+                        <input type="password" class="form-control" name="password" placeholder="Password" />
+                        <input type="submit" class="btn btn-primary" style="margin-top:85px;" value="Autentificare" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

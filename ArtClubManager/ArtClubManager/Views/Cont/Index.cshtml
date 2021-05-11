@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12" style="margin-top:10px;">
+    <form action="<?php echo base_url('administrare/schimba_parola') ?>" method="POST">
+        <div class="col-md-6">
+            <div class="col-md-8">
+                <h3 style="margin-bottom: 20px;">Schimba parola</h3>
+                <label for="parola">Parola veche</label>
+                <input id="parola" class="form-control" type="password" name="parola" required data-toggle="password">
+
+                <label for="parola_n">Parola noua</label>
+                <input id="parola_n" class="form-control" type="password" name="parola_n" required data-toggle="password">
+
+                <input type="submit" class="btn btn-primary" style="margin-top:10px;" value="Schimba">
+            </div>
+        </div>
+    </form>
+    <form action="<?php echo base_url('administrare/schimba_informatii') ?>" method="POST">
+        <div class="col-md-6">
+            <div class="col-md-10">
+                <h3 style="margin-bottom: 20px;">Informatii personale</h3>
+                <label for="nume">Nume</label>
+                <input id="nume" class="form-control" type="text" name="nume" required>
+
+                <label for="prenume">Prenume</label>
+                <input id="prenume" class="form-control" type="text" name="prenume" required>
+
+                <label for="parola">Parola</label>
+                <input id="parola" class="form-control" type="password" name="parola" required>
+
+                <input type="submit" class="btn btn-primary" style="margin-top:10px;" value="Schimba">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+	$('#contul_meu').addClass('active');
+</script>
+

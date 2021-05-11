@@ -1,0 +1,70 @@
+﻿@model ArtClubManager.Models.Membrii
+@{
+    ViewBag.Title = "Login";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/LoginRegister.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+
+    <title>Index</title>
+</head>
+
+<body style="background-image:url(../../Content/img/art1.jpg ); background-size:cover;">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        @Html.ValidationSummary(true)
+
+        <div class="col-md-12">
+            <div class="row" style="text-align:center">
+
+
+
+                <div class="col-md-12" style="margin-top:40px; float:none;">
+                    <h2 style="margin-bottom:25px;">Intra in cont</h2>
+                    <div style="text-align:center;">
+                        @ViewBag.Message
+                    </div>
+                    <div class="form-group" style="text-align: center">
+                        <div class="col-md-2" style="margin:0 auto;float:none;">
+                            @*@Html.LabelFor(model => model.ID_Username, new { @class = "col-md-2 form-control transparent" })*@
+
+                            @Html.TextBoxFor(model => model.ID_Username, new { @placeholder = "ID user", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ID_Username)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2" style="margin:0 auto;float:none;">
+
+
+                            @Html.PasswordFor(model => model.Parola, new { @placeholder = "Parola", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Parola)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10" style="margin:0 auto;float:none;">
+                            <input type="submit" value="Login" class="btn btn-default" />
+                        </div>
+                    </div>
+                    @Html.ActionLink("Nu ai cont ? Inregistreaza-te acum", "UserRegistration", "Cont")
+                </div>
+            </div>
+        </div>
+
+
+    }
+</body>
+</html>
