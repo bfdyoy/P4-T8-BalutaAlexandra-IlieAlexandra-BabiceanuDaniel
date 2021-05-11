@@ -1,0 +1,57 @@
+﻿@model ArtClubManager.Models.Resurse
+
+@{
+    ViewBag.Title = "Details";
+    if (this.User.IsInRole("Administrator"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Resurse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_NumeResursa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_NumeResursa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CostZi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostZi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Locatie.ID_Locatie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Locatie.ID_Locatie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.ID_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.ID_Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_NumeResursa }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

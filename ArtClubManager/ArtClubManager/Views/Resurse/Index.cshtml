@@ -1,0 +1,136 @@
+﻿@model List<ArtClubManager.Models.Resurse>
+
+@{
+    var grid = new WebGrid(canPage: true, rowsPerPage: 10);
+    grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
+    if (this.User.IsInRole("Administrator"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.1/xlsx.full.min.js"></script>
+    <script src="http://oss.sheetjs.com/js-xlsx/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" /> <!grid>
+    <script src="~/Scripts/app.js"></script>
+</head>
+<body ng-app="MyApp">
+
+    <div ng-controller="MyController" class="container" style="margin-top:-300px;">
+        <div class="form-inline">
+            <input type="file" name="file" class="form-control"
+                   onchange="angular.element(this).scope().UploadFile(this.files)" />
+            <input type="button" value="Import" class="btn btn-success" ng-disabled="!SelectedFileForUpload"
+                   ng-click="ParseExcelDataAndSave()" />
+            <br />
+            <span style="color:red">
+                {{Message}}
+            </span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Liste Resurse</h2>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">Search</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    @using (Html.BeginForm("../Resurse/Index", "Resurse", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
+                    {
+                        <div class="form-group">
+                            <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="search" />
+                        </div>
+                        <button type="submit" value="Search" class="btn btn-success">Search</button>
+                    }
+
+                </div>
+            </div>
+        </nav>
+
+        <div>
+            @grid.Table(
+                tableStyle: "table table-responsive table-bordered",
+                columns: grid.Columns(
+                                      grid.Column(columnName: "ID_NumeResursa", header: "Nume Resursa"),
+                                      grid.Column(columnName: "ID_Locatie", header: "Locatie"),
+                                      grid.Column(columnName: "CostZi", header: "Cost/Zi"),
+                                      grid.Column(columnName: "ID_Status", header: "Status"),
+                                      grid.Column("Alege optiune:", format:
+                                            @<text>
+                                                @Html.ActionLink("Edit", "../Resurse/Edit", new { id = item.ID_NumeResursa }) |
+                                                @Html.ActionLink("Details", "../Resurse/Details", new { id = item.ID_NumeResursa }) |
+                                                @Html.ActionLink("Delete", "../Resurse/Delete", new { id = item.ID_NumeResursa })
+                                            </text>, style: "col3Width", canSort: false)
+
+                                                                                                                         )
+
+                                                                                                                     )
+
+
+            <p>
+                @Html.ActionLink("Create New", "../Resurse/Create")
+            </p>
+
+
+
+            <div class="row">
+                <div class="col-sm-6">
+
+                    @grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-small pagination-right")
+                </div>
+            </div>
+
+            @Html.Hidden("dir", grid.SortDirection)
+            @Html.Hidden("col", grid.SortColumn)
+
+        </div>
+
+
+    </div>
+    <script src="~/Scripts/jquery-3.1.1.js"></script> <!grid>
+    <script src="~/Scripts/bootstrap.min.js"></script> <!grid>
+    <script>
+        $(function () {
+            try {
+                var dir = $('#dir').val();
+                var col = $('#col').val();
+                var header = $("th a[href*=" + col + "]");
+                if (dir == "Ascending") {
+                    header.text(header.text() + "  ?")
+                }
+                if (dir == "Descending") {
+                    header.text(header.text() + "  ?");
+                }
+
+            } catch (e) {
+
+            }
+        })
+    </script>
+
+
+
+    <div class="container">
+        Export Data : @Html.ActionLink("Excel", "GetExcel", "Resurse")
+    </div>
+
+    <script>
+        $('#resurse').addClass('active');
+    </script>
+</body>
+
+</html>
